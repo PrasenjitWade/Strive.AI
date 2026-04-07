@@ -1,20 +1,14 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+## STRIVE.AI 
+>> Strive. Learn. Achieve
 
-# Run and deploy your AI Studio app
+## 💡 About
+- Strive.AI is an AI - Powered platform designed to help students:
+- Choose their Rigth career path
+- Get a clear Roadmap
+- Ask doubt anytime using AI
 
-This contains everything you need to run your app locally.
+## Built BY:-
+***Prasenjit Suresh Wade***
+CEO & Founder, Strive.AI
 
-View your app in AI Studio: https://ai.studio/apps/b25ec6cb-f1a3-413e-bd1b-31c80d94580a
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Maharastra, India
