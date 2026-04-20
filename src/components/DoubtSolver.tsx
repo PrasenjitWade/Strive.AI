@@ -5,9 +5,9 @@ import ReactMarkdown from 'react-markdown';
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 
-const getApiKey = () => {
-  return (process.env.GEMINI_API_KEY) || (import.meta as any).env.VITE_GEMINI_API_KEY || '';
-};
+const ai = new GoogleGenAI({ 
+  apiKey: process.env.GEMINI_API_KEY || (import.meta as any).env.VITE_GEMINI_API_KEY || ''
+});
 
 const SYSTEM_INSTRUCTION = "You are Strive.AI, a helpful student companion for Indian students. Answer academic doubts clearly. Respond in English by default. However, if the user asks a question in Hindi, you must respond in Hindi. Be encouraging and concise. Use simple language. Focus on competitive exams like JEE/NEET. If the board is Maharashtra State Board, focus on its specific curriculum.";
 
@@ -40,23 +40,22 @@ export default function DoubtSolver() {
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setIsLoading(true);
 
-    const apiKey = getApiKey();
-    if (!apiKey) {
+    if (!process.env.GEMINI_API_KEY && !(import.meta as any).env.VITE_GEMINI_API_KEY) {
       setMessages(prev => [...prev, { role: 'assistant', content: "⚠️ **API Key Missing!**\n\nPlease add `VITE_GEMINI_API_KEY` to your environment variables on Vercel/Netlify to enable the AI solver." }]);
       setIsLoading(false);
       return;
     }
 
     try {
-      const genAI = new GoogleGenAI(apiKey);
-      const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: SYSTEM_INSTRUCTION,
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `[Current Syllabus: ${selectedBoard}] ${userMessage}`,
+        config: {
+          systemInstruction: SYSTEM_INSTRUCTION
+        }
       });
-
-      const result = await model.generateContent(`[Current Syllabus: ${selectedBoard}] ${userMessage}`);
-      const response = await result.response;
-      const aiResponse = response.text() || "I'm sorry, I couldn't process that. Please try again.";
+      
+      const aiResponse = response.text || "I'm sorry, I couldn't process that. Please try again.";
       setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
     } catch (error) {
       console.error('Gemini Error:', error);
@@ -245,7 +244,7 @@ export default function DoubtSolver() {
               </button>
             </form>
             <p className="text-[10px] text-center text-gray-600 mt-4 uppercase tracking-widest font-bold">
-              Powered by Google Gemini 1.5 Flash
+              Powered by Google Gemini 3 Flash
             </p>
           </div>
         </div>
