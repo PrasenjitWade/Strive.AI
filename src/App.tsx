@@ -32,9 +32,12 @@ export default function App() {
             </a>
           </div>
 
-          <button className="btn-pill-white">
+          <a 
+            href="#doubt-solver" 
+            className="px-6 py-2.5 rounded-full bg-brand-primary text-white text-sm font-black hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand-primary/20"
+          >
             Get Started
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -68,6 +71,31 @@ export default function App() {
             >
               The ultimate AI companion designed specifically for Indian students. Solve doubts instantly and navigate your career path with confidence.
             </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+          >
+            <a 
+              href="https://forms.gle/zoxpENPUEBD5QYqh9" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative px-10 py-5 rounded-2xl bg-gradient-to-r from-brand-secondary to-purple-600 text-white font-black text-xl shadow-2xl shadow-brand-secondary/30 hover:scale-105 active:scale-95 transition-all overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
+              <span className="relative flex items-center gap-2">
+                Get My Personalized Career Plan <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </a>
+            <a 
+              href="#doubt-solver" 
+              className="px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-all"
+            >
+              Ask AI Doubt
+            </a>
+          </motion.div>
           </div>
         </section>
 
@@ -142,6 +170,38 @@ export default function App() {
           </div>
         </section>
 
+        {/* Final CTA Section */}
+        <section className="py-32 px-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-brand-secondary/5 -z-10" />
+          <div className="max-w-4xl mx-auto rounded-[3rem] glass p-12 md:p-20 text-center space-y-10 relative overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-brand-secondary to-transparent" />
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Ready to Master Your <span className="gradient-text-purple">Future?</span></h2>
+              <p className="text-lg text-gray-400 max-w-xl mx-auto font-light">Join thousands of students who are already using Strive.AI to excel in their studies.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href="#doubt-solver" 
+                className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-white text-black font-black text-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-fuchsia-100/10"
+              >
+                Launch Strive.AI
+              </a>
+              <a 
+                href="https://forms.gle/HTKcepMYiCsutxDf7" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-10 py-5 rounded-2xl border border-white/10 text-white font-bold text-xl hover:bg-white/5 transition-all"
+              >
+                Leave Feedback
+              </a>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-xs text-gray-500 font-bold tracking-widest uppercase">
+              <Sparkles className="w-4 h-4 text-brand-secondary" />
+              <span>Available 24/7 for you</span>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* Footer */}
@@ -191,16 +251,18 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating Feedback Button */}
-      <a 
-        href="https://forms.gle/HTKcepMYiCsutxDf7" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 px-6 py-3 rounded-full bg-brand-primary text-white font-bold flex items-center gap-2 shadow-2xl shadow-brand-primary/20 hover:scale-105 transition-all z-50"
-      >
-        <MessageSquare className="w-5 h-5" />
-        <span>Feedback</span>
-      </a>
+      {/* Floating Buttons Container */}
+      <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+        <a 
+          href="https://forms.gle/HTKcepMYiCsutxDf7" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="self-end px-5 py-2.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 text-gray-400 font-bold text-xs flex items-center gap-2 hover:bg-white/10 transition-all"
+        >
+          <MessageSquare className="w-4 h-4" />
+          <span>Feedback</span>
+        </a>
+      </div>
     </div>
   );
 }
